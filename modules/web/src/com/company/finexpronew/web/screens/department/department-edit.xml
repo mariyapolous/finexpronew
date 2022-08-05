@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://departmentEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.finexpronew.web.screens.department">
+    <data>  <!-- у меня разные вью в брауз и в эдит-->
+        <instance id="departmentDc"
+                  class="com.company.finexpronew.entity.department.Department"
+                    view = "department-view">
+            <!--<view extends="_local">
+                <property name="head" view="_minimal"/>
+            </view>-->
+            <loader/>
+        </instance>
+        <collection id="headsDc" class="com.company.finexpronew.entity.worker.Worker" view="_minimal">
+            <loader id="headsDl">
+                <query>
+                    <![CDATA[select e from finexpronew_Worker e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="departmentDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <lookupPickerField id="headField" optionsContainer="headsDc" property="head">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

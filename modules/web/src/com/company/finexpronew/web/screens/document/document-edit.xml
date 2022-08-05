@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://documentEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.finexpronew.web.screens.document">
+    <data>
+        <instance id="documentDc"
+                    class="com.company.finexpronew.entity.document.Document"
+                    view="document-with-worker">
+            <loader/>
+        </instance>
+        <collection id="workersDc" class="com.company.finexpronew.entity.worker.Worker" view="_base">
+            <loader>
+                <query>
+                    <![CDATA[select e from finexpronew_Worker e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="documentDc">
+            <column width="350px">
+                <textField id="titleField" property="title"/>
+                <textArea id="descriptionField" property="description" align="TOP_LEFT"/>
+                <lookupPickerField id="workerField" optionsContainer="workersDc" property="worker">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

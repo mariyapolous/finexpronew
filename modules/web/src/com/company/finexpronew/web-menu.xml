@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-finexpronew" insertBefore="administration" caption="mainMsg://menu_config.application-finexpronew">
+        <item screen="finexpronew_Worker.browse" caption="mainMsg://menu_config.finexpronew_Worker.browse"/>
+        <item screen="finexpronew_Document.browse" caption="mainMsg://menu_config.finexpronew_Document.browse"/>
+        <item screen="finexpronew_Department.browse" caption="mainMsg://menu_config.finexpronew_Department.browse"/>
+    </menu>
+</menu-config>

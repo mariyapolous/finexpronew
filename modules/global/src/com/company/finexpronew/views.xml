@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view class = "com.company.finexpronew.entity.department.Department"
+          name="department-view" extends="_local">
+        <property name="head" view="_minimal"/>
+    </view>
+    <view class="com.company.finexpronew.entity.worker.Worker" name="worker-view" extends="_local">
+        <property name="department" view="_minimal"/>
+    </view>
+    <view class="com.company.finexpronew.entity.document.Document" name="document-with-worker" extends="_local">
+        <property name="worker" view="_minimal"/>
+    </view>
+</views>

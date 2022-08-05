@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://workerEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.finexpronew.web.screens.worker">
+    <data>
+        <instance id="workerDc"
+                  class="com.company.finexpronew.entity.worker.Worker"
+                  view = "worker-view">
+            <!-- сначала был <view extends="_local"/>-->
+            <loader/>
+        </instance>
+        <collection id="departmentsDc" class="com.company.finexpronew.entity.department.Department" view="department-view"> <!-- сначала был view="_minimal"/>-->
+            <loader id="departmentsDl">
+                <query>
+                    <![CDATA[select e from finexpronew_Department e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="workerDc">
+            <column width="350px">
+                <textField id="firstNameField" property="firstName"/>
+                <textField id="lastNameField" property="lastName"/>
+                <textField id="emailField" property="email"/>
+                <lookupPickerField id="departmentField" optionsContainer="departmentsDc" property="department">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
